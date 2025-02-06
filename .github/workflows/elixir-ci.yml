@@ -1,0 +1,97 @@
+name: Elixir CI
+
+on:
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ '**' ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:14
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Elixir
+      id: versions
+      uses: erlef/setup-beam@v1
+      with:
+        version-type: 'strict'
+        version-file: '.tool-versions'
+
+    - name: Restore dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: deps
+        key: deps-${{ steps.versions.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: deps-${{ steps.versions.outputs.elixir-version }}-
+
+    - name: Restore compiled files cache
+      uses: actions/cache@v3
+      with:
+        path: _build
+        key: compiled-${{ steps.versions.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: compiled-${{ steps.versions.outputs.elixir-version }}-
+
+    - name: Install dependencies
+      run: mix deps.get
+
+    - name: Compile dependencies
+      run: mix deps.compile
+
+    - name: Check compiler warnings
+      run: mix compile --all-warnings --warnings-as-errors
+
+    - name: Check Formatting
+      run: mix format --check-formatted
+
+    - name: Run tests
+      run: mix test
+
+  code_quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Elixir
+      id: versions
+      uses: erlef/setup-beam@v1
+      with:
+        version-type: 'strict'
+        version-file: '.tool-versions'
+
+    - name: Restore dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: deps
+        key: deps-${{ steps.versions.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: deps-${{ steps.versions.outputs.elixir-version }}-
+
+    - name: Restore compiled files cache
+      uses: actions/cache@v3
+      with:
+        path: _build
+        key: compiled-${{ steps.versions.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: compiled-${{ steps.versions.outputs.elixir-version }}-
+
+    - name: Install dependencies
+      run: mix deps.get
