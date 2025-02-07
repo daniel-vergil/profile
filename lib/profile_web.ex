@@ -53,7 +53,7 @@ defmodule ProfileWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {ProfileWeb.Layouts, :app}
+        layout: {ProfileWeb.Layouts, :root}
 
       unquote(html_helpers())
     end

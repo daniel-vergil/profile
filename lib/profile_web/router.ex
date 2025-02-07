@@ -5,7 +5,6 @@ defmodule ProfileWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {ProfileWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -17,13 +16,9 @@ defmodule ProfileWeb.Router do
   scope "/", ProfileWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", PortfolioLive
+    live "/story", StoryLive
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ProfileWeb do
-  #   pipe_through :api
-  # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:profile, :dev_routes) do
