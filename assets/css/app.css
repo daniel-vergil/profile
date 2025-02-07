@@ -3,3 +3,77 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+body {
+        background-color: #121212;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 110%;
+    }
+
+.experience-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: space-evenly;
+        margin-bottom: 32px;
+    }
+
+.card {
+        background: #1E1E1E;
+        border-radius: 10px;
+        padding: 20px;
+        width: 320px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        position: relative;
+    }
+
+.card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+    }
+
+.logo {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #fff;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+.company {
+        font-size: 18px;
+        font-weight: bold;
+        color: #FFD700;
+        margin-bottom: 5px;
+    }
+
+.role {
+        font-size: 16px;
+        font-weight: 600;
+        color: #E0E0E0;
+    }
+
+.date {
+        font-size: 14px;
+        color: #B0B0B0;
+        margin-bottom: 10px;
+    }
+
+.description {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+.tech-stack {
+        font-size: 13px;
+        color: #A0A0A0;
+        margin-top: 10px;
+    }
