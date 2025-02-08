@@ -1,10 +1,62 @@
 defmodule ProfileWeb.PortfolioLive do
   use ProfileWeb, :live_view
   import ProfileWeb.CoreComponents
+  alias Profile.Insights
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
+    Insights.increment_insight_count(:portfolio_views)
+
     {:ok, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_email_click", params, socket) do
+    Insights.increment_insight_count(:email_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_github_click", params, socket) do
+    Insights.increment_insight_count(:github_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_linkedin_click", params, socket) do
+    Insights.increment_insight_count(:linkedin_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_instagram_click", params, socket) do
+    Insights.increment_insight_count(:instagram_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_facebook_click", params, socket) do
+    Insights.increment_insight_count(:facebook_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_threads_click", params, socket) do
+    Insights.increment_insight_count(:threads_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_x_click", params, socket) do
+    Insights.increment_insight_count(:x_clicks)
+
+    {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
@@ -105,15 +157,45 @@ defmodule ProfileWeb.PortfolioLive do
       id="footer"
       class="flex flex-wrap p-8 md:gap-12 gap-2 font-mono text-lg justify-end bottom-0 justify-between"
     >
-      <.link href="mailto:daniel.vergil2711@gmail.com">Email</.link>
-      <.link href="https://github.com/daniel-vergil" target="_blank">GitHub</.link>
-      <.link href="https://www.linkedin.com/in/daniel-vergil-stephen/" target="_blank">
+      <.link href="mailto:daniel.vergil2711@gmail.com" phx-click="increment_email_click">Email</.link>
+      <.link
+        href="https://github.com/daniel-vergil"
+        target="_blank"
+        phx-click="increment_github_click"
+      >
+        GitHub
+      </.link>
+      <.link
+        href="https://www.linkedin.com/in/daniel-vergil-stephen/"
+        target="_blank"
+        phx-click="increment_linkedin_click"
+      >
         LinkedIn
       </.link>
-      <.link href="https://www.instagram.com/danielvergilstephen" target="_blank">Instagram</.link>
-      <.link href="https://www.facebook.com/daniel.vergil" target="_blank">Facebook</.link>
-      <.link href="https://www.threads.net/@danielvergilstephen" target="_blank">Threads</.link>
-      <.link href="https://x.com/daniel_vergil" target="_blank">X</.link>
+      <.link
+        href="https://www.instagram.com/danielvergilstephen"
+        target="_blank"
+        phx-click="increment_instagram_click"
+      >
+        Instagram
+      </.link>
+      <.link
+        href="https://www.facebook.com/daniel.vergil"
+        target="_blank"
+        phx-click="increment_facebook_click"
+      >
+        Facebook
+      </.link>
+      <.link
+        href="https://www.threads.net/@danielvergilstephen"
+        target="_blank"
+        phx-click="increment_threads_click"
+      >
+        Threads
+      </.link>
+      <.link href="https://x.com/daniel_vergil" target="_blank" phx-click="increment_x_click">
+        X
+      </.link>
     </div>
     """
   end
