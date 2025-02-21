@@ -63,29 +63,23 @@ defmodule ProfileWeb.PortfolioLive do
   def render(assigns) do
     ~H"""
     <.flash_group flash={@flash} />
-    <div
-      id="nav-menu"
-      class="flex p-4 font-mono text-lg justify-end sticky top-0 md:ml-[60%] justify-between gap-8"
-    >
-      <.link href={~p"/"}>PORTFOLIO</.link>
-      <.link href={~p"/story"}>MY STORY</.link>
-    </div>
-    <div class="flex flex-col md:w-full w-[90%] mt-48">
+    <div class="flex flex-col opacity-80 bg-repeat-round w-full"
+    style="background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHJ5NHM1Y3g2d2FlOTRnNTl0M3ppbHZwMzJpMWZzOGx4cjBya2RvbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TxVVB6PfWMjE4/giphy.gif');">
       <div class="flex items-center justify-center">
         <div class="flex flex-col items-center">
-          <h1 class="md:text-4xl text-2xl font-bold text-white pt-8">Hi!</h1>
-          <h1 class="md:text-4xl text-2xl font-bold text-white">I'm Daniel Vergil Stephen</h1>
-          <h3 class="text-gray-500 p-4">
-            Software Development Engineer in Test | Aspiring Full-Stack Developer
+          <h1 class="md:text-5xl text-2xl font-bold text-white pt-8">Hi!</h1>
+          <h1 class="md:text-5xl text-2xl font-bold text-white">I'm Daniel Vergil Stephen</h1>
+          <h3 class="text-orange-500 text-xl p-4 md:w-full w-[90%] justify-center text-center">
+            Software Development Engineer in Test
           </h3>
         </div>
 
-        <div class="w-[50%]">
+        <div class="hidden md:block max-w-[50%]">
           <img src="/images/daniel-image.svg" alt="Daniel Profile Picture" />
         </div>
       </div>
 
-      <div class="experience-container justify-between w-[100%] md:p-0 p-16">
+      <div class="experience-container justify-between w-[100%] md:p-6 p-16 md:border-t-2 border-0 border-red-400">
         <!-- Card 1 -->
         <div class="card">
           <img
@@ -98,11 +92,15 @@ defmodule ProfileWeb.PortfolioLive do
           <div class="role">Engineer in Test III</div>
           <div class="date">Nov 2019 - Present</div>
           <div class="description">
-            - Developed and maintained full-stack applications using Elixir and Phoenix.<br />
-            - Designed and implemented test automation strategies for UI, API, and scale tests.<br />
-            - Conducted end-to-end IoT device testing with cloud-based platforms.<br />
-            - Debugged and enhanced product codebase in Elixir and Elm.<br />
-            - Managed backend deployments on Ubuntu servers.
+            <ul>
+              <li>Architected and implemented robust test automation strategies for UI, API, and scale testing using <b>Cypress, Postman, Livebook, PhoenixTest, and ExUnit</b>.</li>
+              <li>Led end-to-end <b>IoT device testing</b>, ensuring seamless cloud integration and high system reliability.</li>
+              <li>Developed and maintained <b>full-stack</b> applications in <b>Elixir and Phoenix</b>, optimizing performance and scalability.</li>
+              <li><b>Managed backend deployments</b> on Ubuntu servers, streamlining infrastructure and validation processes.</li>
+              <li>Optimized Cypress test framework, reducing flakiness, adding reusable helper functions, and improving execution speed.</li>
+              <li>Reduced regression cycles by <b>50%</b> by automating feature and <b>scale tests</b>, accelerating release timelines.</li>
+              <li><b>Built automation tools</b> to eliminate repetitive manual QA efforts, driving efficiency and test coverage.</li>
+            </ul>
           </div>
           <div class="tech-stack">
             <strong>Tech Stack:</strong>
@@ -152,50 +150,6 @@ defmodule ProfileWeb.PortfolioLive do
           </div>
         </div>
       </div>
-    </div>
-    <div
-      id="footer"
-      class="flex flex-wrap p-8 md:gap-12 gap-2 font-mono text-lg justify-end bottom-0 justify-between"
-    >
-      <.link href="mailto:daniel.vergil2711@gmail.com" phx-click="increment_email_click">Email</.link>
-      <.link
-        href="https://github.com/daniel-vergil"
-        target="_blank"
-        phx-click="increment_github_click"
-      >
-        GitHub
-      </.link>
-      <.link
-        href="https://www.linkedin.com/in/daniel-vergil-stephen/"
-        target="_blank"
-        phx-click="increment_linkedin_click"
-      >
-        LinkedIn
-      </.link>
-      <.link
-        href="https://www.instagram.com/danielvergilstephen"
-        target="_blank"
-        phx-click="increment_instagram_click"
-      >
-        Instagram
-      </.link>
-      <.link
-        href="https://www.facebook.com/daniel.vergil"
-        target="_blank"
-        phx-click="increment_facebook_click"
-      >
-        Facebook
-      </.link>
-      <.link
-        href="https://www.threads.net/@danielvergilstephen"
-        target="_blank"
-        phx-click="increment_threads_click"
-      >
-        Threads
-      </.link>
-      <.link href="https://x.com/daniel_vergil" target="_blank" phx-click="increment_x_click">
-        X
-      </.link>
     </div>
     """
   end

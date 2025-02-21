@@ -12,9 +12,71 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="flex flex-col h-[100vh]">
-    <div class="flex flex-col bg-gradient-to-b from-[#1a202c] to-[#2d3748] justify-center items-center">
-      {@inner_content}
+  <body class="flex flex-col w-full h-fit">
+    <div class="flex flex-col w-full">
+      <div
+        id="nav-menu"
+        class="flex p-4 font-mono text-lg justify-end top-0 md:ml-[70%] ml-[20%] mr-[5%] justify-between text-stroke text-red-500 gap-4 drop-shadow-xl"
+      >
+        <.link class="hover:text-red-300" href={~p"/"}>PORTFOLIO</.link>
+        <.link class="hover:text-red-300" href={~p"/story"}>MY STORY</.link>
+      </div>
+      <div class="flex flex-col">
+        {@inner_content}
+      </div>
+      <div
+        id="footer"      
+        class="bg-[#121212] flex md:flex-row flex-col p-4 font-mono text-lg bottom-0 md:justify-between text-center text-stroke text-red-500 drop-shadow-xl md:ml-16 ml-0 md:mr-16 mr-0"
+      >
+        <.link class="hover:text-red-300" href="mailto:daniel.vergil2711@gmail.com" phx-click="increment_email_click">
+          Email
+        </.link>
+        <.link
+        class="hover:text-red-300"
+          href="https://github.com/daniel-vergil"
+          target="_blank"
+          phx-click="increment_github_click"
+        >
+          GitHub
+        </.link>
+        <.link
+        class="hover:text-red-300"
+          href="https://www.linkedin.com/in/daniel-vergil-stephen/"
+          target="_blank"
+          phx-click="increment_linkedin_click"
+        >
+          LinkedIn
+        </.link>
+        <.link
+        class="hover:text-red-300"
+          href="https://www.instagram.com/danielvergilstephen"
+          target="_blank"
+          phx-click="increment_instagram_click"
+        >
+          Instagram
+        </.link>
+        <.link
+        class="hover:text-red-300"
+          href="https://www.facebook.com/daniel.vergil"
+          target="_blank"
+          phx-click="increment_facebook_click"
+        >
+          Facebook
+        </.link>
+        <.link
+        class="hover:text-red-300"
+          href="https://www.threads.net/@danielvergilstephen"
+          target="_blank"
+          phx-click="increment_threads_click"
+        >
+          Threads
+        </.link>
+        <.link 
+        class="hover:text-red-300"
+        href="https://x.com/daniel_vergil" target="_blank" phx-click="increment_x_click">
+          X
+        </.link>
+      </div>
     </div>
   </body>
 </html>
