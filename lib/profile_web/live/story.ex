@@ -11,50 +11,57 @@ defmodule ProfileWeb.StoryLive do
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_email_click", params, socket) do
+  def handle_event("increment_email_click", _params, socket) do
     Insights.increment_insight_count(:email_clicks)
 
     {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_github_click", params, socket) do
+  def handle_event("increment_github_click", _params, socket) do
     Insights.increment_insight_count(:github_clicks)
 
     {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_linkedin_click", params, socket) do
+  def handle_event("increment_linkedin_click", _params, socket) do
     Insights.increment_insight_count(:linkedin_clicks)
 
     {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_instagram_click", params, socket) do
+  def handle_event("increment_instagram_click", _params, socket) do
     Insights.increment_insight_count(:instagram_clicks)
 
     {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_facebook_click", params, socket) do
+  def handle_event("increment_facebook_click", _params, socket) do
     Insights.increment_insight_count(:facebook_clicks)
 
     {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_threads_click", params, socket) do
+  def handle_event("increment_threads_click", _params, socket) do
     Insights.increment_insight_count(:threads_clicks)
 
     {:noreply, socket}
   end
 
   @impl Phoenix.LiveView
-  def handle_event("increment_x_click", params, socket) do
+  def handle_event("increment_x_click", _params, socket) do
     Insights.increment_insight_count(:x_clicks)
+
+    {:noreply, socket}
+  end
+
+  @impl Phoenix.LiveView
+  def handle_event("increment_resume_clicks", _params, socket) do
+    Insights.increment_insight_count(:resume_clicks)
 
     {:noreply, socket}
   end

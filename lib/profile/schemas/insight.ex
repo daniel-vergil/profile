@@ -12,6 +12,7 @@ defmodule Profile.Schemas.Insight do
     field :facebook_clicks, :integer
     field :threads_clicks, :integer
     field :x_clicks, :integer
+    field :resume_clicks, :integer
 
     timestamps(type: :utc_datetime)
   end
@@ -28,7 +29,8 @@ defmodule Profile.Schemas.Insight do
       :instagram_clicks,
       :facebook_clicks,
       :threads_clicks,
-      :x_clicks
+      :x_clicks,
+      :resume_clicks
     ])
   end
 end

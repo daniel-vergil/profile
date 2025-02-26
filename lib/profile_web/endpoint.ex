@@ -23,7 +23,7 @@ defmodule ProfileWeb.Endpoint do
     at: "/",
     from: :profile,
     gzip: false,
-    only: ProfileWeb.static_paths()
+    only: ~w(assets fonts images favicon.ico robots.txt resume.pdf)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

@@ -26,7 +26,8 @@ defmodule Profile.Insights do
         instagram_clicks: 0,
         facebook_clicks: 0,
         threads_clicks: 0,
-        x_clicks: 0
+        x_clicks: 0,
+        resume_clicks: 0
       ]
     )
   end
