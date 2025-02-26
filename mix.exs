@@ -32,34 +32,32 @@ defmodule Profile.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:csv, "~> 3.0"},
-      {:ecto_psql_extras, "~> 0.6"},
-      {:ecto_sql, "~> 3.0"},
-      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
-      {:finch, "~> 0.13"},
-      {:floki, ">= 0.30.0", only: :test},
-      {:gettext, "~> 0.20"},
-      {:holidefs, "~> 0.3"},
-      {:jason, "~> 1.2"},
-      {:mox, "~> 0.5.0", only: :test},
-      {:number, "~> 1.0.3"},
-      {:phoenix_active_link, "~> 0.3.2"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_html, "~> 3.3"},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:phoenix, "~> 1.7.19"},
+      {:phoenix_ecto, "~> 4.5"},
+      {:ecto_sql, "~> 3.10"},
+      {:postgrex, ">= 0.0.0"},
+      {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.20.1"},
-      {:phoenix, "~> 1.7.2"},
-      {:plug_cowboy, "~> 2.5"},
-      {:postgrex, ">= 0.17.3"},
-      {:req, "~> 0.5.0"},
-      {:swoosh, "~> 1.3"},
-      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
-      {:telemetry_metrics, "~> 0.6"},
+      {:phoenix_live_view, "~> 1.0.0"},
+      {:floki, ">= 0.30.0", only: :test},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
+      {:heroicons,
+       github: "tailwindlabs/heroicons",
+       tag: "v2.1.1",
+       sparse: "optimized",
+       app: false,
+       compile: false,
+       depth: 1},
+      {:swoosh, "~> 1.5"},
+      {:finch, "~> 0.13"},
+      {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:unplug, "~> 1.0.0"},
-      {:ueberauth_auth0, "~> 2.0"}
+      {:gettext, "~> 0.26"},
+      {:jason, "~> 1.2"},
+      {:dns_cluster, "~> 0.1.1"},
+      {:bandit, "~> 1.5"}
     ]
   end
 
@@ -71,31 +69,17 @@ defmodule Profile.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: [
-        "deps.get",
-        "ecto.setup",
-        "assets.setup",
-        "assets.build"
-      ],
-      test: ["ecto.reset", "test"],
-      "ecto.setup": [
-        "ecto.create",
-        "ecto.load -d priv/repo/foundation.sql --skip-if-loaded --quiet",
-        "ecto.migrate --quiet"
-      ],
-      "ecto.reset": ["ecto.drop --quiet", "ecto.setup"],
+      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind default", "esbuild default"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
-    ] ++ aliases(Mix.env())
-  end
-
-  defp aliases(:dev) do
-    [
-      "ecto.migrate": ["ecto.migrate", "ecto.dump"],
-      "ecto.rollback": ["ecto.rollback", "ecto.dump"]
+      "assets.build": ["tailwind profile", "esbuild profile"],
+      "assets.deploy": [
+        "tailwind profile --minify",
+        "esbuild profile --minify",
+        "phx.digest"
+      ]
     ]
   end
-
-  defp aliases(_), do: []
 end
